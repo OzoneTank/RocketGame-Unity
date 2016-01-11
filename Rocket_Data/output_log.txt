@@ -1,0 +1,39 @@
+Initialize engine version: 5.2.1f1 (44735ea161b3)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: Intel(R) HD Graphics Family (ID=0xa16)
+    Vendor:   Intel
+    VRAM:     128 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\ed_no_000\Documents\Unity Projects\RocketGame\Rocket_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\ed_no_000\Documents\Unity Projects\RocketGame\Rocket_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\ed_no_000\Documents\Unity Projects\RocketGame\Rocket_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\ed_no_000\Documents\Unity Projects\RocketGame\Rocket_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\ed_no_000\Documents\Unity Projects\RocketGame\Rocket_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\ed_no_000\Documents\Unity Projects\RocketGame\Rocket_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\ed_no_000\Documents\Unity Projects\RocketGame\Rocket_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\ed_no_000\Documents\Unity Projects\RocketGame\Rocket_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\ed_no_000\Documents\Unity Projects\RocketGame\Rocket_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.095 seconds
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: C:\Users\ed_no_000\Documents\Unity Projects\RocketGame\Rocket_Data\Managed\System.dll (this message is harmless)
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 25c0 -> priority: 1 
+LoadLevel MainScene
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 5.002533 ms
+
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 235.
+Total: 0.394537 ms (FindLiveObjects: 0.027096 ms CreateObjectMapping: 0.016832 ms MarkObjects: 0.325975 ms  DeleteObjects: 0.024222 ms)
+
+CollectItem
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+

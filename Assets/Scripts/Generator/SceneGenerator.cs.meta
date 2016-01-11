@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: daf4b8f51397df2428469b45fbf80ef6
+timeCreated: 1452356920
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - sceneNode: {fileID: 127334, guid: 1e3b2749328e9584889f77ac8cf2b1fc, type: 2}
+  - ground: {fileID: 143720, guid: d06c662a411e7f5489890a9c13cb2caa, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

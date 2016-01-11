@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 457ba6851f5074041a47d3a25a18e6c8
+timeCreated: 1452370584
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - LeftThruster: {instanceID: 0}
+  - RightThruster: {instanceID: 0}
+  - leftPropulsion: {instanceID: 0}
+  - rightPropulsion: {instanceID: 0}
+  - smokePrefab: {fileID: 124482, guid: 9992fd0960a9ea840a5aad5e2d6cdbba, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
