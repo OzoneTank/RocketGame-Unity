@@ -8,7 +8,7 @@ public class ShipStats : MonoBehaviour {
     public int health = 1;
     public Text statusText;
 
-    public float maxHeight = 0.0f;
+    private float maxHeight = 0.0f;
 
     private int itemsCollected = 0;
     private int totalItems = 0;

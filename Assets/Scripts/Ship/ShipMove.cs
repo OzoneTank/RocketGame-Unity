@@ -40,11 +40,6 @@ public class ShipMove : MonoBehaviour {
 
 	void Update () {
         updateInput();
-        if (reverseControls) {
-            bool temp = leftThrustOn;
-            leftThrustOn = rightThrustOn;
-            rightThrustOn = temp;
-        }
         leftPropulsion.SetActive(leftThrustOn);
         rightPropulsion.SetActive(rightThrustOn);
 
@@ -78,8 +73,8 @@ public class ShipMove : MonoBehaviour {
             useTouch = false;
         }
         if (!useTouch) {
-            leftThrustOn = leftInput;
-            rightThrustOn = rightInput;
+            setThrustOn(true, leftInput);
+            setThrustOn(false, rightInput);
         }
     }
 
@@ -91,26 +86,28 @@ public class ShipMove : MonoBehaviour {
         if (rightThrustOn) {
             RightThruster.AddRelativeForce(thrustVector);
         }
-
-       
     }
 
-    public void toggleBoost(bool isLeft, bool isOn) {
-        useTouch = true;
-        if (isLeft) {
-            leftThrustOn = isOn;
-        } else {
-            rightThrustOn = isOn;
-        }
-    }
+
     public void toggleBoostLeftOn(bool on) {
-        toggleBoost(true, on);
+        useTouch = true;
+        setThrustOn(true, on);
     }
     public void toggleBoostRightOn(bool on) {
-        toggleBoost(false, on);
+        useTouch = true;
+        setThrustOn(false, on);
     }
 
     public void setReverseControls(bool reverse) {
         reverseControls = reverse;
+    }
+
+    public void setThrustOn(bool left, bool isOn) {
+        left = (reverseControls) ? !left : left;
+        if(left) {
+            leftThrustOn = isOn;
+        } else {
+            rightThrustOn = isOn;
+        }
     }
 }
