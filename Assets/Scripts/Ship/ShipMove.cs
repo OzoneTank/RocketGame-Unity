@@ -5,6 +5,8 @@ using System;
 public class ShipMove : MonoBehaviour {
 
     //public variables
+    public float lockDegrees = 45f;
+
     public float thrust = 10.0f;
     public Rigidbody2D LeftThruster;
     public Rigidbody2D RightThruster;
@@ -15,6 +17,8 @@ public class ShipMove : MonoBehaviour {
     public float smokeDeltaTime = 1.0f;
 
     public float maxSpeed = 10.0f;
+
+    public bool reverseControls = false;
 
     //local variables
     private bool leftThrustOn = false;
@@ -36,6 +40,11 @@ public class ShipMove : MonoBehaviour {
 
 	void Update () {
         updateInput();
+        if (reverseControls) {
+            bool temp = leftThrustOn;
+            leftThrustOn = rightThrustOn;
+            rightThrustOn = temp;
+        }
         leftPropulsion.SetActive(leftThrustOn);
         rightPropulsion.SetActive(rightThrustOn);
 
@@ -82,6 +91,8 @@ public class ShipMove : MonoBehaviour {
         if (rightThrustOn) {
             RightThruster.AddRelativeForce(thrustVector);
         }
+
+       
     }
 
     public void toggleBoost(bool isLeft, bool isOn) {
@@ -92,16 +103,14 @@ public class ShipMove : MonoBehaviour {
             rightThrustOn = isOn;
         }
     }
-    public void toggleBoostLeftOn() {
-        toggleBoost(true, true);
+    public void toggleBoostLeftOn(bool on) {
+        toggleBoost(true, on);
     }
-    public void toggleBoostLeftOff() {
-        toggleBoost(true, false);
+    public void toggleBoostRightOn(bool on) {
+        toggleBoost(false, on);
     }
-    public void toggleBoostRightOn() {
-        toggleBoost(false, true);
-    }
-    public void toggleBoostRightOff() {
-        toggleBoost(false, false);
+
+    public void setReverseControls(bool reverse) {
+        reverseControls = reverse;
     }
 }
