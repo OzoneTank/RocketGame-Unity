@@ -5,8 +5,10 @@ using System;
 
 public class ShipStats : MonoBehaviour {
 
-    public int health = 1;
-    public Text statusText;
+    public int health = 3;
+	public Text heightStatusText;
+	public Text timeStatusText;
+	public GameObject healthPanel;
 
     private float maxHeight = 0.0f;
 
@@ -20,6 +22,7 @@ public class ShipStats : MonoBehaviour {
         itemsCollected = 0;
         totalItems = GameObject.FindGameObjectsWithTag(Constants.ITEM_TAG).Length;
         startTime = DateTime.Now;
+		SetHealth (health);
         //rb = GetComponent<Rigidbody2D>();
 	}
 	
@@ -28,11 +31,9 @@ public class ShipStats : MonoBehaviour {
         if (transform.position.y > maxHeight) {
             maxHeight = transform.position.y;
         }
-        if (statusText) {
-            TimeSpan timePassed = DateTime.Now.Subtract(startTime);
+		timeStatusText.text = "Time: " + Convert.ToInt16(DateTime.Now.Subtract(startTime).TotalSeconds);
             //statusText.text = "Health:" + health + " Items:" + itemsCollected + "/" + totalItems + " Time:" + Convert.ToInt16(timePassed.TotalSeconds);
-            statusText.text = "Max Height:" + Convert.ToInt16(maxHeight);
-        }
+		heightStatusText.text = "Max Height: " + Convert.ToInt16(maxHeight);
 	}
 
 
@@ -62,4 +63,21 @@ public class ShipStats : MonoBehaviour {
     void reachedGoal(GameObject goal) {
 
     }
+
+	public void SetHealth(int health) {
+		this.health = health;
+		if (this.health > 3) {
+			this.health = 3;
+		} else if (this.health < 0) {
+			this.health = 0;
+		}
+		for (int i = 0; i < healthPanel.transform.childCount; i++) {
+			Transform t = healthPanel.transform.GetChild(i);
+			t.gameObject.SetActive (i < health);
+		}
+	}
+
+	public void ChangeHealth(int inc) {
+		SetHealth (health + inc);
+	}
 }
