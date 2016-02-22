@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
 
 public class ShipMove : MonoBehaviour {
 
@@ -12,7 +11,7 @@ public class ShipMove : MonoBehaviour {
     public Rigidbody2D RightThruster;
     public GameObject leftPropulsion;
     public GameObject rightPropulsion;
-    public GameObject smokePrefab;
+    public GameObject[] smokePrefabs;
 
     public float smokeDeltaTime = 1.0f;
 
@@ -58,11 +57,13 @@ public class ShipMove : MonoBehaviour {
     private void createSmoke() {
         if (leftThrustOn && Time.time > lastTimeSmokeLeft + smokeDeltaTime) {
             lastTimeSmokeLeft = Time.time;
-            Instantiate(smokePrefab, (Vector3)LeftThruster.position + smokeOffset, gameObject.transform.rotation);
+            GameObject smokePrefabLeft = smokePrefabs[Random.Range(0, smokePrefabs.Length)];
+            Instantiate(smokePrefabLeft, (Vector3)LeftThruster.position + smokeOffset, gameObject.transform.rotation);
         }
         if (rightThrustOn && Time.time > lastTimeSmokeRight + smokeDeltaTime) {
             lastTimeSmokeRight = Time.time;
-            Instantiate(smokePrefab, (Vector3)RightThruster.position + smokeOffset, gameObject.transform.rotation);
+            GameObject smokePrefabRight = smokePrefabs[Random.Range(0, smokePrefabs.Length)];
+            Instantiate(smokePrefabRight, (Vector3)RightThruster.position + smokeOffset, gameObject.transform.rotation);
         }
     }
 

@@ -9,12 +9,14 @@ public class UIManager : MonoBehaviour {
     public GameObject playCanvas;
     public GameObject pauseCanvas;
     public GameObject settingsCanvas;
+    public GameObject gameOverCanvas;
 
     public enum ScreenMode {
         Start,
         Play,
         Pause,
-        Settings
+        Settings,
+        GameOver
     }
 
     public ScreenMode currentMode = ScreenMode.Start;
@@ -30,6 +32,7 @@ public class UIManager : MonoBehaviour {
         playCanvas.SetActive(false);
         startCanvas.SetActive(false);
         settingsCanvas.SetActive(false);
+        gameOverCanvas.SetActive(false);
     }
 
     public void SetScreen(string screen) {;
@@ -47,6 +50,9 @@ public class UIManager : MonoBehaviour {
             case "settings":
                 SetScreenMode(ScreenMode.Settings);
                 break;
+            case "gameover":
+                SetScreenMode(ScreenMode.GameOver);
+                break;
         }
     }
 
@@ -55,7 +61,7 @@ public class UIManager : MonoBehaviour {
             currentCanvas.SetActive(false);
         }
         currentMode = mode;
-        if (currentMode == ScreenMode.Play) {
+        if (currentMode == ScreenMode.Play || currentMode == ScreenMode.GameOver) {
             ResumeGame();
         } else {
             PauseGame();

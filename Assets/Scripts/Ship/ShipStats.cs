@@ -36,9 +36,11 @@ public class ShipStats : MonoBehaviour {
 		heightStatusText.text = "Max Height: " + Convert.ToInt16(maxHeight);
 	}
 
-
-    void OnTriggerEnter2D(Collider2D other) {
-        switch(other.tag) {
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        Debug.Log(other.gameObject.tag);
+        switch (other.gameObject.tag)
+        {
             case "Enemy":
                 damagePlayer(other.gameObject);
                 break;
@@ -52,7 +54,7 @@ public class ShipStats : MonoBehaviour {
     }
 
     void damagePlayer(GameObject enemy) {
-        health--;
+        ChangeHealth(-1);
     }
 
     void collectItem(GameObject item) {
