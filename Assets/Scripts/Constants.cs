@@ -8,4 +8,7 @@ public static class Constants {
     public const string PLAYER_TAG = "Player";
     public const string ITEM_TAG = "CollectItem";
     public const string GOAL_TAG = "Goal";
+
+    public const string LAYER_MIRROR = "Mirror";
+    public const string LAYER_REFLECTION = "Reflection";
 }

@@ -6,6 +6,7 @@ public class WrapAroundScreen : MonoBehaviour {
     private float leftScreen;
     private float rightScreen;
     private float screenWidth;
+    
 	// Use this for initialization
 	void Start () {
         Camera cam = Camera.main;

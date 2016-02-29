@@ -69,8 +69,8 @@ public class SceneGenerator : MonoBehaviour {
     void AddPrefabToNodeForWrap(GameObject prefab, GameObject node, Vector3 pos) {
         Vector3 widthVector = new Vector3(rightOffset - leftOffset, 0.0f);
         AddPrefabToNode(prefab, node, pos);
-        AddPrefabToNode(prefab, node, pos + widthVector);
-        AddPrefabToNode(prefab, node, pos - widthVector);
+        //AddPrefabToNode(prefab, node, pos + widthVector);
+        //AddPrefabToNode(prefab, node, pos - widthVector);
     }
 
     void AddPrefabToNode(GameObject prefab, GameObject node, float x, float y) {

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 
 public class MirrorColliders : MonoBehaviour {
     
@@ -14,31 +15,43 @@ public class MirrorColliders : MonoBehaviour {
         public Collider2D rightCollider;
     }
 
+    public bool IsStatic = false;
+    private GameObject leftObj;
+    private GameObject rightObj;
+
+    private GameObject DublicateGameObj(Vector3 offset) {
+        GameObject cloneObj = Instantiate(gameObject, transform.position + offset, transform.rotation) as GameObject;
+        cloneObj.layer = LayerMask.NameToLayer(Constants.LAYER_REFLECTION);
+
+        MonoBehaviour[] leftComponents = cloneObj.GetComponents<MonoBehaviour>();
+        foreach (MonoBehaviour comp in leftComponents) {
+            comp.enabled = false;
+        }
+        return cloneObj;
+    }
+
 	void Start () {
         screenWidth = GetScreenWidth();
-        Collider2D[] colliders = GetComponents<Collider2D>();
-        foreach(Collider2D coll in colliders)
-        {
-            ColliderData data = new ColliderData();
-            data.originalCollider = coll;
-            data.leftCollider = CopyComponent<Collider2D>(coll, gameObject);
-            data.rightCollider = CopyComponent<Collider2D>(coll, gameObject);
-            colliderDataList.Add(data);
+        Vector3 screenOffset = new Vector3(screenWidth, 0);
+        leftObj = DublicateGameObj(-screenOffset);
+        rightObj = DublicateGameObj(screenOffset);
+        leftObj.transform.parent = gameObject.transform;
+        rightObj.transform.parent = gameObject.transform;
+
+        if (IsStatic) {
+            enabled = false;
         }
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
-	    foreach(ColliderData data in colliderDataList)
-        {
-            Vector3 rotateOffset = new Vector3(screenWidth, 0);
-            rotateOffset = Quaternion.Inverse(gameObject.transform.rotation) * rotateOffset;
-            Vector2 rightOffset = new Vector2(rotateOffset.x, rotateOffset.y);
-            Vector2 leftOffset = -rightOffset;
-            data.leftCollider.offset = leftOffset;
-            data.rightCollider.offset = rightOffset;
-        }
-	}
+        Vector3 posOffset = new Vector2(transform.position.x, transform.position.y);
+        Vector3 screenOffset = new Vector3(screenWidth, 0);
+        leftObj.transform.position = transform.position + screenOffset;
+        rightObj.transform.position = transform.position - screenOffset;
+        leftObj.transform.rotation = transform.rotation;
+        rightObj.transform.rotation = transform.rotation;
+    }
 
     private float GetScreenWidth()
     {
@@ -48,17 +61,5 @@ public class MirrorColliders : MonoBehaviour {
         Vector3 screenTopRight = cam.ViewportToWorldPoint(new Vector3(1, 1, transform.position.z));
         
         return screenTopRight.x - screenBottomLeft.x;
-    }
-
-    T CopyComponent<T>(T original, GameObject destination) where T : Component
-    {
-        System.Type type = original.GetType();
-        Component copy = destination.AddComponent(type);
-        System.Reflection.FieldInfo[] fields = type.GetFields();
-        foreach (System.Reflection.FieldInfo field in fields)
-        {
-            field.SetValue(copy, field.GetValue(original));
-        }
-        return copy as T;
     }
 }
